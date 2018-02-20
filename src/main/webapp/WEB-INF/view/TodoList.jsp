@@ -1,7 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<link rel='stylesheet' href='<c:url value="/Resources/css/style.css" />' type='text/css' media='all' />
+<head>
+    <link rel='stylesheet' href='<c:url value="/Resources/css/style.css" />' type='text/css' media='all' />
+    <script type="text/javascript" src="/Resources/js/app.js"></script>
+</head>
 <body>
 <h1>Add items to your Todo App</h1>
 
@@ -10,10 +13,10 @@
     <input type="submit" value="Submit"/>
 <ul>
 
-    <c:forEach items="${todoItem}" var="element">
+    <c:forEach items="${todoItem}" var="element" varStatus="loop">
         <%--<c:if request.getParameter(${element})>checked="checked"</c:if>--%>
-        <li><input type="checkbox" value=${element} name="lisst"/>
-            <input class="changeDefault" name="TTT" value="${element}"/>
+        <li><input onClick="check(${loop.index})" type="checkbox" value=${element} name="lisst"/>
+            <input id="${loop.index}" class="changeDefault" name="TTT" value="${element}"/>
         </li>
 
         <div></div>
@@ -22,8 +25,7 @@
 </ul>
 
     <input type="submit" value="Clear Completed"/>
-    ${TTT}
-
+${lisst}
 </form>
 </body>
 </html>

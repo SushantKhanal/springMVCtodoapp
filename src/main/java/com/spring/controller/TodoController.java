@@ -15,7 +15,7 @@ import com.spring.controller.TodoItems;
 @Controller
 public class TodoController {
     LinkedList<String> items= new LinkedList<String>();
-    LinkedList<String> TTT = new LinkedList<String>();
+
     @GetMapping("/")
     public ModelAndView showTodoApp() {
         ModelAndView model = new ModelAndView("TodoList");
@@ -27,12 +27,12 @@ public class TodoController {
 
         String listItem = todoItems1.getListItem();
         LinkedList<String> lisst = todoItems1.getLisst();
-        TTT = todoItems1.getTTT();
+        LinkedList<String> editedItems = todoItems1.getTTT();
 
         if(todoItems1.getListItem()!= "") {
             items.add(listItem);
-            if(!TTT.contains(listItem)){
-                TTT.add(listItem);
+            if(!editedItems.contains(listItem)){
+                editedItems.add(listItem);
             }
         }
 
@@ -43,16 +43,16 @@ public class TodoController {
                 }
             }
             for(String item: lisst) {
-                if(TTT.contains(item)) {
-                    TTT.remove(item);
+                if(editedItems.contains(item)) {
+                    editedItems.remove(item);
                 }
             }
         }
 
-        if(items != TTT) {
-            items = TTT;
+        if(items != editedItems) {
+            items = editedItems;
         }
-        model1.addObject("TTT", TTT);
+        model1.addObject("editedItems", editedItems);
         model1.addObject("todoItem", items);
         model1.addObject("lisst", lisst);
         return model1;
