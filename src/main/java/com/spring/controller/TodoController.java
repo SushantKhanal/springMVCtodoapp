@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import com.spring.controller.TodoItems;
 
 @Controller
 public class TodoController {
-    List<String> items= new ArrayList<String>();
+    LinkedList<String> items= new LinkedList<String>();
+    LinkedList<String> TTT = new LinkedList<String>();
     @GetMapping("/")
     public ModelAndView showTodoApp() {
         ModelAndView model = new ModelAndView("TodoList");
@@ -25,12 +24,17 @@ public class TodoController {
     @PostMapping("/submit")
     public ModelAndView showTodoList( @ModelAttribute("todoItems1") TodoItems todoItems1) {
         ModelAndView model1 = new ModelAndView("TodoList");
+
+        String listItem = todoItems1.getListItem();
+        LinkedList<String> lisst = todoItems1.getLisst();
+        TTT = todoItems1.getTTT();
+
         if(todoItems1.getListItem()!= "") {
-            items.add(todoItems1.getListItem());
+            items.add(listItem);
+            if(!TTT.contains(listItem)){
+                TTT.add(listItem);
+            }
         }
-
-        List<String> lisst = todoItems1.getLisst();
-
 
         if(lisst != null) {
             for(String item: lisst) {
@@ -38,8 +42,17 @@ public class TodoController {
                     items.remove(item);
                 }
             }
+            for(String item: lisst) {
+                if(TTT.contains(item)) {
+                    TTT.remove(item);
+                }
+            }
         }
 
+        if(items != TTT) {
+            items = TTT;
+        }
+        model1.addObject("TTT", TTT);
         model1.addObject("todoItem", items);
         model1.addObject("lisst", lisst);
         return model1;
