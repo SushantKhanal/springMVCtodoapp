@@ -28,14 +28,15 @@ public class TodoController {
         String listItem = todoItems1.getListItem();
         LinkedList<String> lisst = todoItems1.getLisst();
         LinkedList<String> editedItems = todoItems1.getTTT();
-
+//the following piece of code adds 'listItem' to 'items' and 'editedItems' lists
         if(todoItems1.getListItem()!= "") {
             items.add(listItem);
-            if(!editedItems.contains(listItem)){
-                editedItems.add(listItem);
-            }
+            editedItems.add(listItem);
+//            if(!editedItems.contains(listItem)){
+//                editedItems.add(listItem);
+//            }
         }
-
+//the following code snippet removes the completed items from both lists
         if(lisst != null) {
             for(String item: lisst) {
                 if(items.contains(item)) {
@@ -48,10 +49,11 @@ public class TodoController {
                 }
             }
         }
-
+//following code updates the original list("items") based on the list "editedItems"
         if(items != editedItems) {
             items = editedItems;
         }
+
         model1.addObject("editedItems", editedItems);
         model1.addObject("todoItem", items);
         model1.addObject("lisst", lisst);

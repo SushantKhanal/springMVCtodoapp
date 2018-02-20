@@ -25,7 +25,7 @@
 </ul>
 
     <input type="submit" value="Clear Completed"/>
-${lisst}
+${editedItems}
 </form>
 </body>
 </html>
