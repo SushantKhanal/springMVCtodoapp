@@ -1,5 +1,6 @@
 var x = false;
 var id;
+var array = [];
 function check(element) {
     x = !x;
     //console.log(element.value);
