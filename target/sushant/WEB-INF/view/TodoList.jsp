@@ -21,7 +21,7 @@
             <li><input id="${element}${loop.index}" onClick="check('${loop.index}','${element}')" type="checkbox" value='${element}'
                        name="markedItems"/>
                 <input id="${loop.index}${element}" class="changeDefault" name="editedItems" value="${element}"/>
-            </li>
+            </li>${loop.index}
 <%--the innner forEach is to re-strike the texts that were marked but not deleted--%>
             <c:forEach items="${idOfMarkedItems}" var="checkedElementId">
                 <c:set var="element" value="${element}"/>
