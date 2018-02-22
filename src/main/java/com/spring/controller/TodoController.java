@@ -1,16 +1,12 @@
 package com.spring.controller;
 
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
-
-import com.spring.controller.TodoItems;
 
 @Controller
 public class TodoController {
@@ -29,25 +25,25 @@ public class TodoController {
         String listItem = todoItems1.getListItem();
         String submitted = todoItems1.getSubmitted();
         String check = "Clear Completed";
-        LinkedList<String> lisst = todoItems1.getLisst();
-        LinkedList<String> editedItems = todoItems1.getTTT();
-        //the following piece of code adds 'listItem' to 'items' and 'editedItems' lists
+        LinkedList<String> markedItems = todoItems1.getMarkedItems();
+        LinkedList<String> editedItems = todoItems1.getEditedItems();
+        LinkedList<String> idOfMarkedItems = todoItems1.getIdOfMarkedItems();
+
+//the following piece of code adds newly created item to the lists
         if (todoItems1.getListItem() != "") {
             items.add(listItem);
             editedItems.add(listItem);
-//            if(!editedItems.contains(listItem)){
-//                editedItems.add(listItem);
-//            }
         }
+
 //the following code snippet removes the completed items from both lists
         if (submitted.equals(check)) {
-            if (lisst != null) {
-                for (String item : lisst) {
+            if (markedItems != null) {
+                for (String item : markedItems) {
                     if (items.contains(item)) {
                         items.remove(item);
                     }
                 }
-                for (String item : lisst) {
+                for (String item : markedItems) {
                     if (editedItems.contains(item)) {
                         editedItems.remove(item);
                     }
@@ -59,10 +55,9 @@ public class TodoController {
         if (items != editedItems) {
             items = editedItems;
         }
-        model1.addObject("submitted", submitted);
-        model1.addObject("editedItems", editedItems);
-        model1.addObject("todoItem", items);
-        model1.addObject("lisst", lisst);
+        model1.addObject("idOfMarkedItems", idOfMarkedItems);
+        model1.addObject("todoItems", items);
+        model1.addObject("markedItems", markedItems);
         return model1;
     }
 

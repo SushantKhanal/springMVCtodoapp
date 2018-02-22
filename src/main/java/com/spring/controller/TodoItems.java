@@ -4,19 +4,13 @@ import java.util.LinkedList;
 
 public class TodoItems {
 
-    private Long id;
     private String listItem;
     private String submitted;
-    private LinkedList<String> TTT;
-    private LinkedList<String> lisst;
+    private LinkedList<String> editedItems;
+    private LinkedList<String> markedItems;
+    private LinkedList<String> idOfMarkedItems;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//the getter and setter methods for the above varriables are listed below
 
     public String getListItem() {
         return listItem;
@@ -34,25 +28,36 @@ public class TodoItems {
         this.submitted = submitted;
     }
 
-    public LinkedList<String> getTTT() {
-        if (TTT == null) {
-            TTT = new LinkedList<>(TTT);
+    public LinkedList<String> getEditedItems() {
+        if (editedItems == null) {
+            editedItems = new LinkedList<String>();
         }
-        return TTT;
+        return editedItems;
     }
 
-    public void setTTT(LinkedList<String> TTT) {
-        this.TTT = TTT;
+    public void setEditedItems(LinkedList<String> editedItems) {
+        this.editedItems = editedItems;
     }
 
-    public LinkedList<String> getLisst() {
-        if (lisst == null) {
-            lisst = new LinkedList<>(lisst);
+    public LinkedList<String> getMarkedItems() {
+        if (markedItems == null) {
+            markedItems = new LinkedList<String>();
         }
-        return lisst;
+        return markedItems;
     }
 
-    public void setLisst(LinkedList<String> lisst) {
-        this.lisst = lisst;
+    public void setMarkedItems(LinkedList<String> lisst) {
+        this.markedItems = lisst;
+    }
+
+    public LinkedList<String> getIdOfMarkedItems() {
+        if (idOfMarkedItems == null) {
+            idOfMarkedItems = new LinkedList<String>();
+        }
+        return idOfMarkedItems;
+    }
+
+    public void setIdOfMarkedItems(LinkedList<String> idOfMarkedItems) {
+        this.idOfMarkedItems = idOfMarkedItems;
     }
 }
